@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vidzora | Modern Fashion & Kids Toys Sri Lanka</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f5ff',
+                            100: '#e0ebff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                        },
+                        accent: {
+                            pink: '#ec4899',
+                            amber: '#f59e0b',
+                            emerald: '#10b981',
+                            cyan: '#06b6d4',
+                            violet: '#8b5cf6',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Swiper CSS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #0b0f17;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Styles */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.78);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.55);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.12),
+                transparent
+            );
+            transition: 0.6s ease;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .glass-card:hover::before {
+            left: 140%;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.35);
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-18px) rotate(3deg); }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(99, 102, 241, 0.4); }
+            50% { box-shadow: 0 0 35px rgba(236, 72, 153, 0.7); }
+        }
+
+        @keyframes borderGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes ripplePulse {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.15); opacity: 0.3; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+
+        .animate-float-slow {
+            animation: floatSlow 6s ease-in-out infinite;
+        }
+
+        .animate-glow-pulse {
+            animation: pulseGlow 3s infinite alternate;
+        }
+
+        .animate-ripple {
+            animation: ripplePulse 2s infinite ease-in-out;
+        }
+
+        /* Animated Gradient Borders */
+        .gradient-border-animated {
+            background-size: 200% 200%;
+            animation: borderGradient 4s ease infinite;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0f17;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6366f1;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Cart Badge Bounce */
+        .badge-bounce {
+            animation: bounceBadge 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes bounceBadge {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.4); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-indigo-500 selection:text-white">
+
+    <div class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white text-xs md:text-sm py-2 px-4 text-center font-medium flex items-center justify-between shadow-md relative z-50">
+        <div class="hidden md:flex items-center space-x-4 text-indigo-100">
+            <span class="flex items-center gap-1.5"><i class="fa-solid fa-truck-fast animate-bounce text-amber-300"></i> Islandwide Express Delivery!</span>
+            <span><i class="fa-solid fa-headset"></i> Hotline: +94 77 123 4567</span>
+        </div>
+        
+        <!-- Interactive Animated Ticker & Promo Code Copy -->
+        <div class="w-full md:w-auto text-center font-semibold tracking-wide flex items-center justify-center gap-2">
+            <span class="hidden sm:inline">🔥 Special Discount:</span>
+            <span>Use code</span>
+            <button onclick="copyPromoCode()" class="bg-slate-900/60 hover:bg-slate-900 px-2.5 py-0.5 rounded-lg text-amber-300 font-bold border border-amber-400/40 hover:scale-105 active:scale-95 transition-transform flex items-center gap-1.5 cursor-pointer shadow-sm" title="Click to copy promo code!">
+                <span id="promoCodeText">VIDZORA10</span>
+                <i class="fa-regular fa-copy text-xs"></i>
+            </button>
+            <span>for 10% OFF!</span>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-3 text-indigo-100">
+            <a href="#contact" class="hover:underline hover:text-white transition-colors">Store Locator</a>
+            <span>|</span>
+            <a href="#track" onclick="toggleOrderTrackerModal(true)" class="hover:underline hover:text-white transition-colors flex items-center gap-1">
+                <i class="fa-solid fa-location-crosshairs text-xs"></i> Track Order
+            </a>
+        </div>
+    </div>
+
+    <header class="sticky top-0 z-40 glass-panel border-b border-slate-800 transition-all duration-300" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Brand Logo with Rotating Animated Icon -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-indigo-500/30 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300">
+                        V
+                    </div>
+                    <div>
+                        <span class="text-2xl font-black tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400">VIDZORA</span>
+                        <span class="block text-[10px] tracking-widest text-indigo-400 uppercase font-bold">Fashion & Toys LK</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex items-center space-x-8 text-sm font-semibold">
+                    <a href="#hero" class="text-indigo-400 hover:text-white transition-colors flex items-center gap-1"><i class="fa-solid fa-house text-xs"></i> Home</a>
+                    <a href="#shop" class="text-slate-300 hover:text-indigo-400 transition-colors">Shop All</a>
+                    <a href="#categories" class="text-slate-300 hover:text-indigo-400 transition-colors">Categories</a>
+                    <a href="#trending" class="text-slate-300 hover:text-indigo-400 transition-colors">Trending</a>
+                    <a href="#kids-corner" class="text-amber-400 hover:text-amber-300 transition-colors flex items-center gap-1.5 px-3 py-1 bg-amber-500/10 rounded-full border border-amber-500/30">
+                        <i class="fa-solid fa-gamepad text-xs animate-pulse"></i> Kids & Toys
+                    </a>
+                    <a href="#about" class="text-slate-300 hover:text-indigo-400 transition-colors">Why Vidzora?</a>
+                </nav>
+
+                <!-- Action Controls: Dynamic Search, Wishlist, Cart -->
+                <div class="flex items-center space-x-3 sm:space-x-5">
+                    
+                    <!-- Search Input Bar -->
+                    <div class="relative hidden sm:block w-48 md:w-64">
+                        <input type="text" id="searchInput" placeholder="Search T-shirts, toys..." 
+                            class="w-full bg-slate-900/90 text-sm text-slate-200 placeholder-slate-500 rounded-full pl-10 pr-4 py-2 border border-slate-700/80 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/40 transition-all">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-2.5 text-slate-500 text-sm"></i>
+                    </div>
+
+                    <!-- Sound Toggle Button -->
+                    <button onclick="toggleAudioFx()" id="soundToggleBtn" class="p-2.5 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-300 transition-colors border border-slate-700/60" title="Sound Effects">
+                        <i id="soundIcon" class="fa-solid fa-volume-high text-indigo-400"></i>
+                    </button>
+
+                    <!-- Wishlist Button -->
+                    <button onclick="toggleWishlistDrawer(true)" class="relative p-2.5 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-pink-400 transition-colors border border-slate-700/60 group" title="Wishlist">
+                        <i class="fa-solid fa-heart text-lg group-hover:scale-110 transition-transform"></i>
+                        <span id="wishlistCount" class="absolute -top-1 -right-1 bg-pink-500 text-white text-[10px] font-extrabold w-5 h-5 rounded-full flex items-center justify-center shadow-lg">0</span>
+                    </button>
+
+                    <!-- Cart Drawer Trigger Button -->
+                    <button onclick="toggleCartDrawer(true)" class="relative px-4 py-2.5 rounded-full bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:opacity-95 text-white font-bold text-sm flex items-center space-x-2 shadow-lg shadow-indigo-600/30 transition-all transform hover:scale-105 active:scale-95 animate-glow-pulse">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span class="hidden sm:inline">Cart</span>
+                        <span id="cartCountBadge" class="bg-white text-indigo-800 font-extrabold text-xs px-2 py-0.5 rounded-full shadow-inner">0</span>
+                    </button>
+
+                    <!-- Mobile Menu Button -->
+                    <button onclick="toggleMobileMenu(true)" class="lg:hidden p-2.5 rounded-xl bg-slate-800 text-slate-300 hover:text-white border border-slate-700">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="mobileMenu" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden transition-opacity duration-300">
+        <div class="fixed inset-y-0 right-0 max-w-xs w-full bg-slate-900 border-l border-slate-800 p-6 flex flex-col justify-between shadow-2xl">
+            <div>
+                <div class="flex items-center justify-between mb-8">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center font-bold text-white text-lg">V</div>
+                        <span class="font-extrabold text-xl text-white tracking-wider">VIDZORA</span>
+                    </div>
+                    <button onclick="toggleMobileMenu(false)" class="text-slate-400 hover:text-white p-2">
+                        <i class="fa-solid fa-xmark text-2xl"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Search -->
+                <div class="relative mb-6">
+                    <input type="text" id="mobileSearchInput" placeholder="Search clothes, toys..." 
+                        class="w-full bg-slate-800 text-sm text-slate-200 placeholder-slate-500 rounded-xl pl-10 pr-4 py-2.5 border border-slate-700 focus:outline-none focus:border-indigo-500">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-500"></i>
+                </div>
+
+                <!-- Mobile Navigation Links -->
+                <div class="flex flex-col space-y-4 font-medium text-slate-300 text-lg">
+                    <a href="#hero" onclick="toggleMobileMenu(false)" class="hover:text-indigo-400">Home</a>
+                    <a href="#shop" onclick="toggleMobileMenu(false)" class="hover:text-indigo-400">Shop Collection</a>
+                    <a href="#categories" onclick="toggleMobileMenu(false)" class="hover:text-indigo-400">Categories</a>
+                    <a href="#kids-corner" onclick="toggleMobileMenu(false)" class="text-amber-400 flex items-center gap-2 font-bold">
+                        <i class="fa-solid fa-face-smile"></i> Kids & Toys Zone
+                    </a>
+                    <a href="#about" onclick="toggleMobileMenu(false)" class="hover:text-indigo-400">About Us</a>
+                    <a href="#contact" onclick="toggleMobileMenu(false)" class="hover:text-indigo-400">Contact Shop</a>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-6">
+                <a href="https://wa.me/94771234567" target="_blank" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30">
+                    <i class="fa-brands fa-whatsapp text-xl"></i> Direct Chat / Order
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <section id="hero" class="relative overflow-hidden pt-6 pb-12 md:py-16">
+        <!-- Dynamic Floating Ambient Glow Spheres -->
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl pointer-events-none animate-float-slow"></div>
+        <div class="absolute bottom-10 right-1/4 w-96 h-96 bg-pink-600/20 rounded-full blur-3xl pointer-events-none animate-float-slow" style="animation-delay: -3s;"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Swiper Carousel Container -->
+            <div class="swiper heroSwiper rounded-3xl overflow-hidden glass-panel border border-slate-800/80 shadow-2xl">
+                <div class="swiper-wrapper">
+                    
+                    <!-- Slide 1: Modern Fashion Banner -->
+                    <div class="swiper-slide p-8 sm:p-12 lg:p-16 flex flex-col lg:flex-row items-center justify-between bg-gradient-to-r from-slate-950 via-indigo-950/60 to-slate-950">
+                        <div class="max-w-xl text-center lg:text-left mb-8 lg:mb-0 hero-content-1">
+                            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 font-bold text-xs tracking-wider uppercase mb-4 shadow-sm">
+                                <span class="w-2 h-2 rounded-full bg-indigo-400 animate-ping"></span>
+                                New Arrival Collection 2026
+                            </span>
+                            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-4 tracking-tight">
+                                Modern Fit Wear & Stylish Outfits
+                            </h1>
+                            <p class="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed">
+                                Upgrade your style with Vidzora's modern t-shirts, trousers, and trendy ladies tops. Premium fabrics at Sri Lanka's best prices.
+                            </p>
+                            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+                                <a href="#shop" onclick="playClickSound()" class="px-8 py-3.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-extrabold rounded-2xl shadow-xl shadow-indigo-600/40 transition-all transform hover:-translate-y-1 active:scale-95 flex items-center gap-2">
+                                    Explore Collection <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                                <a href="https://wa.me/94771234567?text=Hi%20Vidzora!%20I%20want%20to%20order%20fashion%20items." target="_blank" class="px-6 py-3.5 bg-slate-900/90 hover:bg-slate-800 text-emerald-400 font-bold rounded-2xl border border-emerald-500/40 flex items-center gap-2 transition-all shadow-md">
+                                    <i class="fa-brands fa-whatsapp text-xl"></i> WhatsApp Catalog
+                                </a>
+                            </div>
+                        </div>
+                        <div class="relative w-full max-w-md lg:max-w-lg hero-img-1">
+                            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80" alt="Vidzora Fashion" class="rounded-2xl object-cover shadow-2xl w-full h-80 sm:h-96 border border-slate-700/60 transform hover:scale-[1.02] transition-transform">
+                            
+                            <!-- Floating Interactive Card Badge -->
+                            <div class="absolute -bottom-4 -left-4 glass-card p-4 rounded-2xl flex items-center space-x-3 shadow-2xl border border-slate-700 animate-float-slow">
+                                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-pink-500 to-rose-500 text-white flex items-center justify-center font-bold text-xl shadow-lg">
+                                    <i class="fa-solid fa-tags"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400 font-semibold uppercase">T-Shirts Starting</p>
+                                    <p class="text-xl font-black text-white">LKR 1,850</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2: Kids Wear & Toys Banner -->
+                    <div class="swiper-slide p-8 sm:p-12 lg:p-16 flex flex-col lg:flex-row items-center justify-between bg-gradient-to-r from-slate-950 via-amber-950/40 to-slate-950">
+                        <div class="max-w-xl text-center lg:text-left mb-8 lg:mb-0">
+                            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 font-bold text-xs tracking-wider uppercase mb-4 shadow-sm">
+                                🧸 Special Toys & Kids Zone
+                            </span>
+                            <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-4 tracking-tight">
+                                Joyful Kids Outfits & Educational Toys
+                            </h2>
+                            <p class="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed">
+                                Soft cotton clothing for boys & kids, plus remote control cars, plush toys, and creative puzzle sets!
+                            </p>
+                            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+                                <button onclick="filterCategory('toys'); playClickSound();" class="px-8 py-3.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-black rounded-2xl shadow-xl shadow-amber-500/30 transition-all transform hover:-translate-y-1 active:scale-95">
+                                    Shop Kids & Toys <i class="fa-solid fa-gamepad ml-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="relative w-full max-w-md lg:max-w-lg">
+                            <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=800&q=80" alt="Kids Toys Vidzora" class="rounded-2xl object-cover shadow-2xl w-full h-80 sm:h-96 border border-slate-700/60">
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Pagination Dots -->
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+            <div class="glass-card p-5 rounded-2xl flex items-center space-x-4">
+                <div class="w-12 h-12 rounded-2xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center text-xl font-bold flex-shrink-0 border border-indigo-500/30">
+                    <i class="fa-solid fa-truck-fast"></i>
+                </div>
+                <div>
+                    <h4 class="font-extrabold text-white text-sm sm:text-base">Fast Islandwide</h4>
+                    <p class="text-xs text-slate-400">Delivery in 2-3 Days</p>
+                </div>
+            </div>
+
+            <div class="glass-card p-5 rounded-2xl flex items-center space-x-4">
+                <div class="w-12 h-12 rounded-2xl bg-emerald-600/20 text-emerald-400 flex items-center justify-center text-xl font-bold flex-shrink-0 border border-emerald-500/30">
+                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                </div>
+                <div>
+                    <h4 class="font-extrabold text-white text-sm sm:text-base">Cash On Delivery</h4>
+                    <p class="text-xs text-slate-400">Pay when received</p>
+                </div>
+            </div>
+
+            <div class="glass-card p-5 rounded-2xl flex items-center space-x-4">
+                <div class="w-12 h-12 rounded-2xl bg-pink-600/20 text-pink-400 flex items-center justify-center text-xl font-bold flex-shrink-0 border border-pink-500/30">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div>
+                    <h4 class="font-extrabold text-white text-sm sm:text-base">Quality Assured</h4>
+                    <p class="text-xs text-slate-400">100% Premium Material</p>
+                </div>
+            </div>
+
+            <div class="glass-card p-5 rounded-2xl flex items-center space-x-4">
+                <div class="w-12 h-12 rounded-2xl bg-amber-600/20 text-amber-400 flex items-center justify-center text-xl font-bold flex-shrink-0 border border-amber-500/30">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                </div>
+                <div>
+                    <h4 class="font-extrabold text-white text-sm sm:text-base">Instant Order</h4>
+                    <p class="text-xs text-slate-400">Direct via WhatsApp</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="shop" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Section Title with Live Items Count -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-slate-800 gap-4">
+            <div>
+                <span class="text-indigo-400 font-bold text-xs uppercase tracking-widest flex items-center gap-1.5">
+                    <i class="fa-solid fa-sparkles"></i> Vidzora Collection
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-black text-white mt-1">Explore Our Products</h2>
+            </div>
+
+            <!-- Sort By Selector -->
+            <div class="flex items-center space-x-3 self-end">
+                <label for="sortSelect" class="text-xs text-slate-400 font-semibold">Sort By:</label>
+                <select id="sortSelect" onchange="sortProducts()" class="bg-slate-900 border border-slate-700 text-slate-200 text-xs rounded-xl px-3 py-2 focus:outline-none focus:border-indigo-500 font-medium">
+                    <option value="default">Featured First</option>
+                    <option value="low-high">Price: Low to High</option>
+                    <option value="high-low">Price: High to Low</option>
+                    <option value="rating">Top Rated</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="categories" class="flex items-center space-x-3 overflow-x-auto pb-4 mb-8 no-scrollbar scroll-smooth">
+            <button onclick="filterCategory('all', this); playClickSound();" class="cat-btn active px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold tracking-wide whitespace-nowrap transition-all bg-indigo-600 text-white shadow-lg shadow-indigo-600/30">
+                <i class="fa-solid fa-border-all mr-1.5"></i> All Items
+            </button>
+            <button onclick="filterCategory('tshirts', this); playClickSound();" class="cat-btn px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-semibold tracking-wide whitespace-nowrap transition-all bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700">
+                <i class="fa-solid fa-shirt mr-1.5"></i> T-Shirts
+            </button>
+            <button onclick="filterCategory('pants', this); playClickSound();" class="cat-btn px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-semibold tracking-wide whitespace-nowrap transition-all bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700">
+                <i class="fa-solid fa-person-dots-from-line mr-1.5"></i> Pants & Joggers
+            </button>
+            <button onclick="filterCategory('blouses', this); playClickSound();" class="cat-btn px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-semibold tracking-wide whitespace-nowrap transition-all bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700">
+                <i class="fa-solid fa-person-dress mr-1.5"></i> Blouses & Tops
+            </button>
+            <button onclick="filterCategory('kids', this); playClickSound();" class="cat-btn px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-semibold tracking-wide whitespace-nowrap transition-all bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700">
+                <i class="fa-solid fa-baby mr-1.5"></i> Kids Wear
+            </button>
+            <button onclick="filterCategory('boys', this); playClickSound();" class="cat-btn px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-semibold tracking-wide whitespace-nowrap transition-all bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700">
+                <i class="fa-solid fa-child mr-1.5"></i> Boys Wear
+            </button>
+            <button onclick="filterCategory('toys', this); playClickSound();" class="cat-btn px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-semibold tracking-wide whitespace-nowrap transition-all bg-slate-800 text-amber-400 hover:bg-slate-700 border border-amber-500/30">
+                <i class="fa-solid fa-robot mr-1.5 animate-bounce"></i> Toys & Games
+            </button>
+        </div>
+
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- JavaScript populates products dynamically with entrance animation -->
+        </div>
+
+        <!-- Empty Search State -->
+        <div id="emptyState" class="hidden text-center py-16">
+            <i class="fa-solid fa-ghost text-5xl text-slate-600 mb-4 animate-bounce"></i>
+            <h3 class="text-xl font-extrabold text-slate-300">No matching items found!</h3>
+            <p class="text-slate-500 text-sm mt-1">Try changing your search term or category filter.</p>
+            <button onclick="filterCategory('all'); playClickSound();" class="mt-4 px-6 py-2.5 bg-indigo-600 text-white rounded-xl font-bold text-sm hover:bg-indigo-500 shadow-lg shadow-indigo-600/30">Reset Filters</button>
+        </div>
+    </section>
+
+    <section id="kids-corner" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="glass-panel p-8 md:p-12 rounded-3xl relative overflow-hidden border border-amber-500/30 bg-gradient-to-r from-slate-950 via-amber-950/20 to-slate-950 shadow-2xl">
+            <div class="absolute -right-10 -bottom-10 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="max-w-xl">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="px-3.5 py-1 bg-amber-500/20 text-amber-300 text-xs font-black rounded-full uppercase tracking-wider border border-amber-500/40">⭐ Vidzora Kids Corner</span>
+                        <!-- Live Limited Offer Counter -->
+                        <span class="text-xs text-slate-400 font-mono flex items-center gap-1">
+                            <i class="fa-solid fa-clock text-amber-400"></i> Sale Ends: <span id="offerTimer" class="text-amber-300 font-bold">12:45:30</span>
+                        </span>
+                    </div>
+
+                    <h2 class="text-3xl sm:text-4xl font-black text-white leading-tight">Super Cool Clothes & Toys for Kids!</h2>
+                    <p class="text-slate-300 text-sm sm:text-base mt-3 leading-relaxed">
+                        Soft skin-friendly materials, safe non-toxic toys, and non-stop fun! Perfect gifts for birthdays & special moments.
+                    </p>
+                    
+                    <ul class="mt-4 space-y-2 text-sm text-slate-300">
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400"></i> 100% Kid-friendly soft breathable cotton</li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400"></i> USB rechargeable stunt cars & durable toys</li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400"></i> Islandwide cash on delivery guaranteed</li>
+                    </ul>
+
+                    <button onclick="filterCategory('toys'); playClickSound();" class="mt-6 px-8 py-3.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-black rounded-2xl shadow-xl shadow-amber-500/30 transform hover:scale-105 transition-all">
+                        View All Toys & Kids Wear <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+
+                <!-- Kids Showcase Images with Floating Badges -->
+                <div class="grid grid-cols-2 gap-4 w-full md:w-auto relative">
+                    <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=400&q=80" alt="Kids Fashion" class="w-44 h-52 rounded-2xl object-cover border border-slate-700/80 shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform">
+                    <img src="https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?auto=format&fit=crop&w=400&q=80" alt="Toys" class="w-44 h-52 rounded-2xl object-cover border border-slate-700/80 shadow-2xl mt-6 rotate-3 hover:rotate-0 transition-transform">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="text-center mb-10">
+            <span class="text-indigo-400 font-bold text-xs uppercase tracking-widest">Happy Shoppers</span>
+            <h2 class="text-3xl font-black text-white mt-1">What Our Customers Say</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glass-card p-6 rounded-3xl border border-slate-800">
+                <div class="flex items-center text-amber-400 mb-3 text-sm">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="text-slate-300 text-sm italic mb-4 leading-relaxed">"Vidzora eken gaththa T-shirt tika supirima quality! Material eka godak soft, wash kalata passe patagiyeth na. Highly recommended!"</p>
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-indigo-600/30 flex items-center justify-center font-black text-indigo-400 border border-indigo-500/30">K</div>
+                    <div>
+                        <h4 class="font-bold text-white text-sm">Kasun Perera</h4>
+                        <p class="text-xs text-slate-500">Colombo, Sri Lanka</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card p-6 rounded-3xl border border-slate-800">
+                <div class="flex items-center text-amber-400 mb-3 text-sm">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="text-slate-300 text-sm italic mb-4 leading-relaxed">"Mage puthata gaththa RC Stunt Car eka adha gedaratama aawa. Direct WhatsApp order ekak dapu nisa godak lesi unaw. Delivery super fast!"</p>
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-pink-600/30 flex items-center justify-center font-black text-pink-400 border border-pink-500/30">N</div>
+                    <div>
+                        <h4 class="font-bold text-white text-sm">Nimesha Fernando</h4>
+                        <p class="text-xs text-slate-500">Kandy, Sri Lanka</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card p-6 rounded-3xl border border-slate-800">
+                <div class="flex items-center text-amber-400 mb-3 text-sm">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="text-slate-300 text-sm italic mb-4 leading-relaxed">"Blouses and Kids wear selection is awesome. Very modern designs and pricing is lower than standard retail shops."</p>
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-600/30 flex items-center justify-center font-black text-emerald-400 border border-emerald-500/30">S</div>
+                    <div>
+                        <h4 class="font-bold text-white text-sm">Dilani Silva</h4>
+                        <p class="text-xs text-slate-500">Galle, Sri Lanka</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/94771234567?text=Hi%20Vidzora!%20I%20want%20to%20place%20an%20order." target="_blank" class="fixed bottom-6 left-6 z-40 bg-emerald-500 hover:bg-emerald-400 text-white p-4 rounded-full shadow-2xl flex items-center justify-center transition-all transform hover:scale-110 active:scale-95 group">
+        <div class="absolute inset-0 rounded-full bg-emerald-500 animate-ripple pointer-events-none"></div>
+        <i class="fa-brands fa-whatsapp text-3xl relative z-10"></i>
+        <span class="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-500 ease-in-out whitespace-nowrap text-xs font-bold pl-0 group-hover:pl-2 relative z-10">
+            Order via WhatsApp
+        </span>
+    </a>
+
+    <footer id="about" class="glass-panel border-t border-slate-800 mt-16 pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                
+                <!-- Brand Info -->
+                <div class="space-y-4">
+                    <a href="#" class="flex items-center space-x-2">
+                        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-500 to-pink-500 flex items-center justify-center text-white font-extrabold text-xl">
+                            V
+                        </div>
+                        <span class="text-2xl font-black text-white">VIDZORA</span>
+                    </a>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Vidzora is your ultimate modern fashion and toys destination in Sri Lanka. Premium quality T-shirts, trousers, trendy blouses, kids wear, and exciting toys.
+                    </p>
+                    <div class="flex space-x-3 text-slate-400">
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-indigo-600 hover:text-white transition-colors"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-pink-600 hover:text-white transition-colors"><i class="fa-brands fa-instagram text-sm"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-slate-700 hover:text-white transition-colors"><i class="fa-brands fa-tiktok text-sm"></i></a>
+                        <a href="https://wa.me/94771234567" target="_blank" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition-colors"><i class="fa-brands fa-whatsapp text-sm"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-xs text-slate-400">
+                        <li><a href="#hero" class="hover:text-indigo-400 transition-colors">Home Page</a></li>
+                        <li><a href="#shop" class="hover:text-indigo-400 transition-colors">All Men's & Ladies Wear</a></li>
+                        <li><a href="#kids-corner" class="hover:text-indigo-400 transition-colors">Kids & Boys Collection</a></li>
+                        <li><a href="#kids-corner" class="hover:text-indigo-400 transition-colors">Toys & Games Corner</a></li>
+                        <li><a href="#" onclick="toggleOrderTrackerModal(true)" class="hover:text-indigo-400 transition-colors">Track Your Order</a></li>
+                    </ul>
+                </div>
+
+                <!-- Customer Care -->
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-4">Customer Care</h4>
+                    <ul class="space-y-2 text-xs text-slate-400">
+                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Size Guide & Fitting</a></li>
+                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Shipping & Delivery Rates</a></li>
+                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Exchange & Refund Policy</a></li>
+                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Payment Methods (COD/Card)</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact & Store -->
+                <div id="contact">
+                    <h4 class="text-white font-bold text-sm mb-4">Vidzora Store Contact</h4>
+                    <ul class="space-y-2 text-xs text-slate-400">
+                        <li class="flex items-start space-x-2">
+                            <i class="fa-solid fa-location-dot mt-0.5 text-indigo-400"></i>
+                            <span>No 142, Main Street, Colombo 03, Sri Lanka</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-phone text-indigo-400"></i>
+                            <span>+94 77 123 4567 / +94 11 234 5678</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-envelope text-indigo-400"></i>
+                            <span>orders@vidzora.lk</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-clock text-indigo-400"></i>
+                            <span>Open Daily: 9:00 AM - 9:00 PM</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="border-t border-slate-800 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
+                <p>&copy; 2026 VIDZORA Clothing & Toys Sri Lanka. All Rights Reserved.</p>
+                <p class="mt-2 sm:mt-0">Crafted for Vidzora Store</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cartDrawer" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-md hidden transition-opacity duration-300">
+        <div class="fixed inset-y-0 right-0 max-w-md w-full bg-slate-900 border-l border-slate-800 flex flex-col justify-between shadow-2xl">
+            
+            <!-- Cart Header -->
+            <div class="p-5 border-b border-slate-800 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-bag-shopping text-indigo-400 text-xl"></i>
+                    <h3 class="text-lg font-bold text-white">Your Shopping Cart</h3>
+                    <span id="cartItemCountHeader" class="text-xs bg-indigo-600/30 text-indigo-300 px-2.5 py-0.5 rounded-full font-bold">0 Items</span>
+                </div>
+                <button onclick="toggleCartDrawer(false)" class="text-slate-400 hover:text-white p-2">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Cart Items Container -->
+            <div id="cartItemsContainer" class="p-5 flex-1 overflow-y-auto space-y-4">
+                <!-- Cart items injected via JS -->
+            </div>
+
+            <!-- Cart Summary & Checkout Actions -->
+            <div class="p-5 border-t border-slate-800 bg-slate-950/90">
+                <!-- Promo Code -->
+                <div class="flex items-center space-x-2 mb-4">
+                    <input type="text" id="promoInput" placeholder="Promo code (VIDZORA10)" class="bg-slate-900 border border-slate-700 text-xs text-white rounded-xl px-3.5 py-2.5 flex-1 focus:outline-none focus:border-indigo-500 uppercase font-mono">
+                    <button onclick="applyPromoCode(); playClickSound();" class="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-xs font-extrabold text-indigo-400 rounded-xl border border-slate-700 transition-colors">Apply</button>
+                </div>
+
+                <div class="space-y-2 text-xs text-slate-400 mb-4">
+                    <div class="flex justify-between">
+                        <span>Subtotal</span>
+                        <span id="cartSubtotal" class="text-white font-semibold">LKR 0</span>
+                    </div>
+                    <div id="discountRow" class="flex justify-between text-pink-400 hidden">
+                        <span>Discount (10%)</span>
+                        <span id="cartDiscount">- LKR 0</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Islandwide Delivery</span>
+                        <span id="deliveryFee" class="text-emerald-400 font-semibold">LKR 350</span>
+                    </div>
+                    <div class="flex justify-between text-base font-black text-white pt-2 border-t border-slate-800">
+                        <span>Total Price</span>
+                        <span id="cartTotal" class="text-indigo-400">LKR 350</span>
+                    </div>
+                </div>
+
+                <!-- Checkout Actions -->
+                <div class="space-y-2">
+                    <button onclick="openCheckoutModal(); playClickSound();" class="w-full py-3.5 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:opacity-95 text-white font-extrabold rounded-2xl shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-credit-card"></i> Proceed to Checkout
+                    </button>
+                    <button onclick="sendOrderToWhatsApp(); playClickSound();" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30">
+                        <i class="fa-brands fa-whatsapp text-xl"></i> Direct Order via WhatsApp
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="wishlistDrawer" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-md hidden transition-opacity duration-300">
+        <div class="fixed inset-y-0 right-0 max-w-md w-full bg-slate-900 border-l border-slate-800 flex flex-col justify-between shadow-2xl">
+            <div class="p-5 border-b border-slate-800 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-heart text-pink-500 text-xl"></i>
+                    <h3 class="text-lg font-bold text-white">Your Wishlist</h3>
+                </div>
+                <button onclick="toggleWishlistDrawer(false)" class="text-slate-400 hover:text-white p-2">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <div id="wishlistItemsContainer" class="p-5 flex-1 overflow-y-auto space-y-4">
+                <!-- Wishlist items injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <div id="quickViewModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4 transition-all">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-3xl w-full p-6 sm:p-8 relative shadow-2xl max-h-[90vh] overflow-y-auto" id="quickViewCard">
+            <button onclick="closeQuickViewModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center z-10">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="quickViewContent">
+                <!-- Dynamic Content Populated via JS -->
+            </div>
+        </div>
+    </div>
+
+    <div id="checkoutModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-xl w-full p-6 sm:p-8 relative shadow-2xl max-h-[90vh] overflow-y-auto">
+            <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <h3 class="text-2xl font-black text-white mb-1 flex items-center gap-2">
+                <i class="fa-solid fa-shield-check text-indigo-400"></i> Place Order Delivery
+            </h3>
+            <p class="text-slate-400 text-xs mb-6">Enter details below to dispatch your Vidzora order anywhere in Sri Lanka.</p>
+
+            <form id="checkoutForm" onsubmit="handleCheckoutSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs text-slate-300 font-semibold mb-1">Full Name *</label>
+                    <input type="text" required id="custName" placeholder="e.g. Nimal Jayasinghe" class="w-full bg-slate-800 border border-slate-700 text-sm text-white rounded-xl p-3 focus:outline-none focus:border-indigo-500">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs text-slate-300 font-semibold mb-1">Mobile / WhatsApp *</label>
+                        <input type="tel" required id="custPhone" placeholder="077 123 4567" class="w-full bg-slate-800 border border-slate-700 text-sm text-white rounded-xl p-3 focus:outline-none focus:border-indigo-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-slate-300 font-semibold mb-1">City / Town *</label>
+                        <input type="text" required id="custCity" placeholder="e.g. Kandy / Colombo" class="w-full bg-slate-800 border border-slate-700 text-sm text-white rounded-xl p-3 focus:outline-none focus:border-indigo-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs text-slate-300 font-semibold mb-1">Delivery Address *</label>
+                    <textarea required id="custAddress" rows="2" placeholder="House No, Street name..." class="w-full bg-slate-800 border border-slate-700 text-sm text-white rounded-xl p-3 focus:outline-none focus:border-indigo-500"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs text-slate-300 font-semibold mb-1">Payment Method</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="flex items-center space-x-2 bg-slate-800 p-3 rounded-xl border border-slate-700 cursor-pointer hover:border-indigo-500">
+                            <input type="radio" name="payment" value="COD" checked class="text-indigo-600">
+                            <span class="text-xs text-slate-200 font-medium">Cash On Delivery</span>
+                        </label>
+                        <label class="flex items-center space-x-2 bg-slate-800 p-3 rounded-xl border border-slate-700 cursor-pointer hover:border-indigo-500">
+                            <input type="radio" name="payment" value="Bank Transfer" class="text-indigo-600">
+                            <span class="text-xs text-slate-200 font-medium">Bank Transfer</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-indigo-950/60 border border-indigo-500/30 rounded-2xl text-xs space-y-1 text-slate-300">
+                    <div class="flex justify-between font-bold text-white text-sm">
+                        <span>Total Payable Amount:</span>
+                        <span id="checkoutTotalAmount" class="text-indigo-400 font-black">LKR 0</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white font-black text-sm rounded-2xl shadow-xl shadow-indigo-600/40 hover:opacity-95 transition-opacity">
+                    Confirm & Dispatch Order <i class="fa-solid fa-circle-check ml-1"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="trackerModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-6 sm:p-8 relative shadow-2xl">
+            <button onclick="toggleOrderTrackerModal(false)" class="absolute top-4 right-4 text-slate-400 hover:text-white w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <h3 class="text-xl font-black text-white mb-2"><i class="fa-solid fa-truck text-indigo-400"></i> Track Your Order</h3>
+            <p class="text-xs text-slate-400 mb-4">Enter your Vidzora order ref (e.g. VID-9821) or phone number.</p>
+            <div class="space-y-3">
+                <input type="text" id="trackInput" placeholder="Order Reference ID..." class="w-full bg-slate-800 border border-slate-700 text-sm text-white rounded-xl p-3 focus:outline-none focus:border-indigo-500 uppercase font-mono">
+                <button onclick="simulateOrderTrack(); playClickSound();" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-sm shadow-lg shadow-indigo-600/30">
+                    Track Live Status
+                </button>
+            </div>
+            <div id="trackResult" class="mt-4 p-4 rounded-2xl bg-slate-800/80 border border-slate-700 hidden text-xs text-slate-300">
+                <!-- Result populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <div id="toastContainer" class="fixed bottom-5 right-5 z-50 space-y-2 pointer-events-none"></div>
+
+    <!-- Swiper JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    <script>
+        const products = [
+            {
+                id: 101,
+                name: "Vidzora Premium Oversized Cotton T-Shirt",
+                category: "tshirts",
+                price: 2450,
+                oldPrice: 3200,
+                rating: 4.9,
+                badge: "HOT SELLER",
+                image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80",
+                sizes: ["S", "M", "L", "XL"],
+                colors: ["Black", "Navy Blue", "Olive Green"],
+                desc: "High quality 100% breathable heavy-cotton oversized unisex t-shirt. Perfect for street fashion in Sri Lanka."
+            },
+            {
+                id: 102,
+                name: "Urban Graphic Print Streetwear Tee",
+                category: "tshirts",
+                price: 2200,
+                oldPrice: 2800,
+                rating: 4.8,
+                badge: "NEW",
+                image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80",
+                sizes: ["M", "L", "XL"],
+                colors: ["White", "Dark Grey"],
+                desc: "Trendy graphic back-print t-shirt with modern typography. Premium non-fade print."
+            },
+            {
+                id: 103,
+                name: "Slim Fit Stretch Denim Jeans",
+                category: "pants",
+                price: 4200,
+                oldPrice: 5500,
+                rating: 4.9,
+                badge: "BEST VALUE",
+                image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=600&q=80",
+                sizes: ["30", "32", "34", "36"],
+                colors: ["Dark Blue", "Black Wash"],
+                desc: "Premium stretch denim jeans crafted for supreme comfort, durability, and standard slim taper."
+            },
+            {
+                id: 104,
+                name: "Mens Utility Cargo Jogger Pants",
+                category: "pants",
+                price: 3800,
+                oldPrice: 4800,
+                rating: 4.7,
+                badge: "TRENDING",
+                image: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=600&q=80",
+                sizes: ["M", "L", "XL"],
+                colors: ["Khaki", "Army Green", "Black"],
+                desc: "Multi-pocket tactical cargo joggers with elastic waist and cuffed ankles for high style."
+            },
+            {
+                id: 105,
+                name: "Elegant Floral Chiffon Ladies Blouse",
+                category: "blouses",
+                price: 3100,
+                oldPrice: 3900,
+                rating: 4.8,
+                badge: "POPULAR",
+                image: "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?auto=format&fit=crop&w=600&q=80",
+                sizes: ["S", "M", "L"],
+                colors: ["Floral Pink", "Sky Blue"],
+                desc: "Soft lightweight floral print blouse suitable for office wear and casual outings."
+            },
+            {
+                id: 106,
+                name: "Casual Linen Button-Up Top",
+                category: "blouses",
+                price: 2900,
+                oldPrice: 3600,
+                rating: 4.6,
+                badge: "SUMMER",
+                image: "https://images.unsplash.com/photo-1604014237800-1c9102c219da?auto=format&fit=crop&w=600&q=80",
+                sizes: ["M", "L", "XL"],
+                colors: ["Beige", "White"],
+                desc: "Breathable linen cotton shirt with V-neckline for relaxed standard fitting."
+            },
+            {
+                id: 107,
+                name: "Unisex Organic Cotton Kids Romper Set",
+                category: "kids",
+                price: 2100,
+                oldPrice: 2700,
+                rating: 5.0,
+                badge: "SOFT COTTON",
+                image: "https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=600&q=80",
+                sizes: ["0-6M", "6-12M", "1-2Y"],
+                colors: ["Pastel Blue", "Soft Yellow"],
+                desc: "Ultra-soft non-allergenic organic cotton baby wear set with nickel-free snaps."
+            },
+            {
+                id: 108,
+                name: "Boys Denim Jacket & Shorts Combo",
+                category: "boys",
+                price: 3950,
+                oldPrice: 4900,
+                rating: 4.9,
+                badge: "TOP PICK",
+                image: "https://images.unsplash.com/photo-1503944583220-79d8926ad5e2?auto=format&fit=crop&w=600&q=80",
+                sizes: ["3-4Y", "5-6Y", "7-8Y"],
+                colors: ["Blue Denim"],
+                desc: "Cool stylish denim outfit for young boys. Includes washed denim jacket and comfortable shorts."
+            },
+            {
+                id: 109,
+                name: "High-Speed Rechargeable 360° RC Stunt Car",
+                category: "toys",
+                price: 4800,
+                oldPrice: 6200,
+                rating: 5.0,
+                badge: "BEST TOY",
+                image: "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?auto=format&fit=crop&w=600&q=80",
+                sizes: ["One Size"],
+                colors: ["Red/Black", "Blue/Black"],
+                desc: "Dual-sided 360-degree rotation stunt remote control car with LED headlights and USB rechargeable battery."
+            },
+            {
+                id: 110,
+                name: "150-Piece Educational Building Blocks Set",
+                category: "toys",
+                price: 3250,
+                oldPrice: 4200,
+                rating: 4.8,
+                badge: "CREATIVE",
+                image: "https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=600&q=80",
+                sizes: ["Standard"],
+                colors: ["Multicolor"],
+                desc: "Non-toxic ABS building bricks kit. Stimulates creative thinking and motor skills."
+            },
+            {
+                id: 111,
+                name: "Cute Fluffy Giant Teddy Bear Plush Toy",
+                category: "toys",
+                price: 2500,
+                oldPrice: 3400,
+                rating: 4.9,
+                badge: "GIFT FAV",
+                image: "https://images.unsplash.com/photo-1559454403-b8fb88521f11?auto=format&fit=crop&w=600&q=80",
+                sizes: ["40cm"],
+                colors: ["Brown", "Cream White"],
+                desc: "Huggable premium soft plush teddy bear. Safe stitched eyes and fluffy premium filling."
+            },
+            {
+                id: 112,
+                name: "Boys Superhero Printed Cotton T-Shirt Set",
+                category: "boys",
+                price: 2400,
+                oldPrice: 3000,
+                rating: 4.7,
+                badge: "POPULAR",
+                image: "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=600&q=80",
+                sizes: ["2-3Y", "4-5Y", "6-7Y"],
+                colors: ["Red", "Dark Blue"],
+                desc: "Vibrant superhero print daily wear t-shirt and elastic waistband shorts set."
+            }
+        ];
+
+        let cart = [];
+        let wishlist = [];
+        let currentCategory = 'all';
+        let appliedDiscount = 0;
+        let soundEnabled = true;
+        let audioCtx = null;
+
+        function playClickSound() {
+            if (!soundEnabled) return;
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.08);
+                gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.08);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.08);
+            } catch(e) {}
+        }
+
+        function playCartChime() {
+            if (!soundEnabled) return;
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+                osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.1); // E5
+                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.25);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.25);
+            } catch(e) {}
+        }
+
+        function toggleAudioFx() {
+            soundEnabled = !soundEnabled;
+            const icon = document.getElementById('soundIcon');
+            if (soundEnabled) {
+                icon.className = 'fa-solid fa-volume-high text-indigo-400';
+                showToast("Sound effects enabled!");
+            } else {
+                icon.className = 'fa-solid fa-volume-xmark text-slate-500';
+                showToast("Sound effects muted");
+            }
+        }
+
+        window.onload = function() {
+            // Swiper setup with autoplay
+            new Swiper('.heroSwiper', {
+                loop: true,
+                autoplay: {
+                    delay: 4500,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+            });
+
+            // GSAP Entrance Animations for Hero
+            gsap.from(".hero-content-1", { duration: 1.2, opacity: 0, x: -50, ease: "power3.out" });
+            gsap.from(".hero-img-1", { duration: 1.2, opacity: 0, x: 50, ease: "power3.out", delay: 0.2 });
+
+            // Initial render
+            renderProducts(products);
+
+            // Timer Countdown Simulation
+            startOfferTimer();
+
+            // Search listeners
+            document.getElementById('searchInput').addEventListener('input', handleSearch);
+            document.getElementById('mobileSearchInput').addEventListener('input', handleSearch);
+        };
+
+        function renderProducts(itemsToRender) {
+            const grid = document.getElementById('productGrid');
+            const emptyState = document.getElementById('emptyState');
+
+            if (itemsToRender.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            grid.innerHTML = itemsToRender.map(p => {
+                const isWishlisted = wishlist.some(w => w.id === p.id);
+                return `
+                <div class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between group relative border border-slate-800 product-card-item">
+                    <!-- Wishlist Toggle Button -->
+                    <button onclick="toggleWishlist(${p.id}); playClickSound();" class="absolute top-3 right-3 z-20 w-9 h-9 rounded-full bg-slate-900/80 backdrop-blur-md flex items-center justify-center transition-all ${isWishlisted ? 'text-pink-500 scale-110' : 'text-slate-400 hover:text-pink-400'}" title="Save to Wishlist">
+                        <i class="fa-solid fa-heart ${isWishlisted ? 'text-pink-500' : ''}"></i>
+                    </button>
+
+                    <!-- Category Badge -->
+                    <span class="absolute top-3 left-3 z-20 bg-gradient-to-r from-indigo-600 to-purple-600 backdrop-blur-md text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">
+                        ${p.badge}
+                    </span>
+
+                    <!-- Image Container with Hover Light Sweep -->
+                    <div class="relative h-64 overflow-hidden bg-slate-950 cursor-pointer group" onclick="openQuickView(${p.id}); playClickSound();">
+                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out">
+                        <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                            <span class="px-4 py-2 bg-white text-slate-900 font-extrabold text-xs rounded-2xl shadow-xl transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                                <i class="fa-solid fa-eye mr-1.5 text-indigo-600"></i> Quick View
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Product Details -->
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between text-xs text-slate-400 mb-1.5">
+                                <span class="uppercase tracking-widest font-extrabold text-indigo-400">${p.category}</span>
+                                <span class="flex items-center text-amber-400 font-bold"><i class="fa-solid fa-star text-[11px] mr-1"></i> ${p.rating}</span>
+                            </div>
+                            <h3 class="font-extrabold text-white text-sm sm:text-base leading-snug line-clamp-2 hover:text-indigo-400 transition-colors cursor-pointer" onclick="openQuickView(${p.id})">
+                                ${p.name}
+                            </h3>
+                        </div>
+
+                        <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between">
+                            <div>
+                                <p class="text-xs text-slate-500 line-through">LKR ${p.oldPrice.toLocaleString()}</p>
+                                <p class="text-lg font-black text-white">LKR ${p.price.toLocaleString()}</p>
+                            </div>
+                            <button onclick="addToCart(${p.id}); playCartChime();" class="px-4 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white rounded-2xl text-xs font-black transition-all flex items-center gap-1.5 shadow-lg shadow-indigo-600/30 active:scale-95">
+                                <i class="fa-solid fa-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('');
+
+            // GSAP Stagger trigger
+            gsap.from(".product-card-item", {
+                duration: 0.6,
+                opacity: 0,
+                y: 30,
+                stagger: 0.06,
+                ease: "power2.out"
+            });
+        }
+
+        function filterCategory(cat, btnElement = null) {
+            currentCategory = cat;
+            
+            // UI Tab active updates
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.classList.remove('bg-indigo-600', 'text-white', 'shadow-lg');
+                btn.classList.add('bg-slate-800', 'text-slate-300');
+            });
+
+            if (btnElement) {
+                btnElement.classList.remove('bg-slate-800', 'text-slate-300');
+                btnElement.classList.add('bg-indigo-600', 'text-white', 'shadow-lg');
+            }
+
+            if (cat === 'all') {
+                renderProducts(products);
+            } else {
+                const filtered = products.filter(p => p.category === cat);
+                renderProducts(filtered);
+            }
+        }
+
+        function handleSearch(e) {
+            const query = e.target.value.toLowerCase().trim();
+            const filtered = products.filter(p => 
+                p.name.toLowerCase().includes(query) || 
+                p.category.toLowerCase().includes(query) ||
+                p.desc.toLowerCase().includes(query)
+            );
+            renderProducts(filtered);
+        }
+
+        function sortProducts() {
+            const val = document.getElementById('sortSelect').value;
+            let sorted = [...products];
+
+            if (currentCategory !== 'all') {
+                sorted = sorted.filter(p => p.category === currentCategory);
+            }
+
+            if (val === 'low-high') {
+                sorted.sort((a, b) => a.price - b.price);
+            } else if (val === 'high-low') {
+                sorted.sort((a, b) => b.price - a.price);
+            } else if (val === 'rating') {
+                sorted.sort((a, b) => b.rating - a.rating);
+            }
+
+            renderProducts(sorted);
+        }
+
+        function addToCart(productId, selectedSize = null, selectedColor = null) {
+            const prod = products.find(p => p.id === productId);
+            if (!prod) return;
+
+            const size = selectedSize || prod.sizes[0];
+            const color = selectedColor || prod.colors[0];
+
+            const existingIndex = cart.findIndex(ci => ci.id === productId && ci.size === size && ci.color === color);
+
+            if (existingIndex > -1) {
+                cart[existingIndex].qty += 1;
+            } else {
+                cart.push({
+                    id: prod.id,
+                    name: prod.name,
+                    price: prod.price,
+                    image: prod.image,
+                    size: size,
+                    color: color,
+                    qty: 1
+                });
+            }
+
+            // Animate Cart Badge
+            const cartBadge = document.getElementById('cartCountBadge');
+            cartBadge.classList.add('badge-bounce');
+            setTimeout(() => cartBadge.classList.remove('badge-bounce'), 400);
+
+            updateCartUI();
+            showToast(`Added "${prod.name}" to cart!`);
+        }
+
+        function changeCartQty(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+            showToast("Item removed from cart");
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cartItemsContainer');
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            
+            document.getElementById('cartCountBadge').innerText = totalQty;
+            document.getElementById('cartItemCountHeader').innerText = `${totalQty} Items`;
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-slate-500">
+                        <i class="fa-solid fa-basket-shopping text-5xl mb-3 text-slate-600"></i>
+                        <p class="text-sm font-semibold">Your cart is currently empty.</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = cart.map((item, idx) => `
+                    <div class="flex items-center justify-between p-3.5 bg-slate-800/60 rounded-2xl border border-slate-700/60">
+                        <img src="${item.image}" alt="${item.name}" class="w-14 h-14 rounded-xl object-cover">
+                        <div class="flex-1 px-3">
+                            <h4 class="text-xs font-bold text-white line-clamp-1">${item.name}</h4>
+                            <p class="text-[11px] text-slate-400">Size: ${item.size} | Color: ${item.color}</p>
+                            <p class="text-xs font-black text-indigo-400 mt-1">LKR ${(item.price * item.qty).toLocaleString()}</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="changeCartQty(${idx}, -1); playClickSound();" class="w-6 h-6 rounded-lg bg-slate-700 text-slate-200 flex items-center justify-center hover:bg-slate-600">-</button>
+                            <span class="text-xs font-bold text-white w-4 text-center">${item.qty}</span>
+                            <button onclick="changeCartQty(${idx}, 1); playClickSound();" class="w-6 h-6 rounded-lg bg-slate-700 text-slate-200 flex items-center justify-center hover:bg-slate-600">+</button>
+                            <button onclick="removeFromCart(${idx}); playClickSound();" class="text-slate-500 hover:text-pink-400 ml-2"><i class="fa-solid fa-trash text-xs"></i></button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Totals Calculation
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const discountAmt = (subtotal * appliedDiscount) / 100;
+            const delivery = subtotal > 0 ? (subtotal > 6000 ? 0 : 350) : 0;
+            const grandTotal = subtotal - discountAmt + delivery;
+
+            document.getElementById('cartSubtotal').innerText = `LKR ${subtotal.toLocaleString()}`;
+            document.getElementById('cartDiscount').innerText = `- LKR ${discountAmt.toLocaleString()}`;
+            document.getElementById('deliveryFee').innerText = delivery === 0 ? "FREE" : `LKR ${delivery}`;
+            document.getElementById('cartTotal').innerText = `LKR ${grandTotal.toLocaleString()}`;
+            document.getElementById('checkoutTotalAmount').innerText = `LKR ${grandTotal.toLocaleString()}`;
+        }
+
+        function copyPromoCode() {
+            const promo = "VIDZORA10";
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(promo);
+            } else {
+                const dummy = document.createElement("input");
+                document.body.appendChild(dummy);
+                dummy.value = promo;
+                dummy.select();
+                document.execCommand("copy");
+                document.body.removeChild(dummy);
+            }
+            showToast("🎉 Promo code VIDZORA10 copied to clipboard!");
+            playClickSound();
+        }
+
+        function applyPromoCode() {
+            const code = document.getElementById('promoInput').value.trim().toUpperCase();
+            if (code === 'VIDZORA10') {
+                appliedDiscount = 10;
+                document.getElementById('discountRow').classList.remove('hidden');
+                updateCartUI();
+                showToast('🎉 Promo Code Applied! 10% OFF discount');
+            } else {
+                showToast('Invalid promo code! Try VIDZORA10');
+            }
+        }
+
+        function toggleWishlist(productId) {
+            const index = wishlist.findIndex(w => w.id === productId);
+            const prod = products.find(p => p.id === productId);
+
+            if (index > -1) {
+                wishlist.splice(index, 1);
+                showToast("Removed from Wishlist");
+            } else {
+                wishlist.push(prod);
+                showToast("Saved to Wishlist ❤️");
+            }
+
+            document.getElementById('wishlistCount').innerText = wishlist.length;
+            renderProducts(products);
+            updateWishlistDrawer();
+        }
+
+        function updateWishlistDrawer() {
+            const container = document.getElementById('wishlistItemsContainer');
+            if (wishlist.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-slate-500">
+                        <i class="fa-solid fa-heart-crack text-5xl mb-3 text-slate-600"></i>
+                        <p class="text-sm font-semibold">Your wishlist is currently empty.</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = wishlist.map(item => `
+                    <div class="flex items-center justify-between p-3.5 bg-slate-800/60 rounded-2xl border border-slate-700">
+                        <img src="${item.image}" alt="${item.name}" class="w-12 h-12 rounded-xl object-cover">
+                        <div class="flex-1 px-3">
+                            <h4 class="text-xs font-bold text-white line-clamp-1">${item.name}</h4>
+                            <p class="text-xs font-black text-indigo-400">LKR ${item.price.toLocaleString()}</p>
+                        </div>
+                        <button onclick="addToCart(${item.id}); playCartChime();" class="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold">Add to Cart</button>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function openQuickView(id) {
+            const p = products.find(item => item.id === id);
+            if (!p) return;
+
+            const modalContent = document.getElementById('quickViewContent');
+            modalContent.innerHTML = `
+                <div>
+                    <img src="${p.image}" alt="${p.name}" class="w-full h-80 object-cover rounded-2xl border border-slate-800 shadow-2xl">
+                </div>
+                <div class="flex flex-col justify-between">
+                    <div>
+                        <span class="text-indigo-400 font-extrabold text-xs uppercase tracking-widest">${p.category}</span>
+                        <h2 class="text-2xl font-black text-white mt-1 mb-2">${p.name}</h2>
+                        <div class="flex items-center space-x-2 mb-4">
+                            <span class="text-amber-400 text-sm font-bold"><i class="fa-solid fa-star"></i> ${p.rating}</span>
+                            <span class="text-slate-500 text-xs">| Islandwide Delivery Verified</span>
+                        </div>
+                        <p class="text-slate-300 text-xs leading-relaxed mb-4">${p.desc}</p>
+                        
+                        <!-- Size Options -->
+                        <div class="mb-4">
+                            <label class="block text-xs text-slate-400 font-semibold mb-2">Select Size:</label>
+                            <div class="flex space-x-2" id="qvSizes">
+                                ${p.sizes.map((s, idx) => `
+                                    <button onclick="selectQVOption(this, 'size'); playClickSound();" class="qv-size-btn px-3 py-1.5 bg-slate-800 text-xs font-bold text-slate-200 rounded-xl border border-slate-700 ${idx === 0 ? 'border-indigo-500 bg-indigo-600/30 text-white' : ''}">${s}</button>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Color Options -->
+                        <div class="mb-6">
+                            <label class="block text-xs text-slate-400 font-semibold mb-2">Select Color:</label>
+                            <div class="flex space-x-2" id="qvColors">
+                                ${p.colors.map((c, idx) => `
+                                    <button onclick="selectQVOption(this, 'color'); playClickSound();" class="qv-color-btn px-3 py-1.5 bg-slate-800 text-xs font-bold text-slate-200 rounded-xl border border-slate-700 ${idx === 0 ? 'border-indigo-500 bg-indigo-600/30 text-white' : ''}">${c}</button>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex items-baseline space-x-2 mb-4">
+                            <span class="text-3xl font-black text-white">LKR ${p.price.toLocaleString()}</span>
+                            <span class="text-sm text-slate-500 line-through">LKR ${p.oldPrice.toLocaleString()}</span>
+                        </div>
+                        <button onclick="addToCartFromQV(${p.id}); playCartChime();" class="w-full py-3.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-extrabold rounded-2xl shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-bag-shopping"></i> Add To Cart Now
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('quickViewModal').classList.remove('hidden');
+            gsap.from("#quickViewCard", { duration: 0.4, scale: 0.85, opacity: 0, ease: "back.out(1.7)" });
+        }
+
+        function closeQuickViewModal() {
+            document.getElementById('quickViewModal').classList.add('hidden');
+        }
+
+        function selectQVOption(btn, type) {
+            const classGroup = type === 'size' ? '.qv-size-btn' : '.qv-color-btn';
+            document.querySelectorAll(classGroup).forEach(b => {
+                b.classList.remove('border-indigo-500', 'bg-indigo-600/30', 'text-white');
+            });
+            btn.classList.add('border-indigo-500', 'bg-indigo-600/30', 'text-white');
+        }
+
+        function addToCartFromQV(id) {
+            const activeSizeBtn = document.querySelector('.qv-size-btn.border-indigo-500');
+            const activeColorBtn = document.querySelector('.qv-color-btn.border-indigo-500');
+
+            const size = activeSizeBtn ? activeSizeBtn.innerText : null;
+            const color = activeColorBtn ? activeColorBtn.innerText : null;
+
+            addToCart(id, size, color);
+            closeQuickViewModal();
+            toggleCartDrawer(true);
+        }
+
+        function sendOrderToWhatsApp() {
+            if (cart.length === 0) {
+                showToast("Cart is empty! Add products first.");
+                return;
+            }
+
+            let msg = `*NEW ORDER - VIDZORA CLOTHING & TOYS*\n\n`;
+            msg += `*Order Items:*\n`;
+            
+            cart.forEach((item, i) => {
+                msg += `${i+1}. ${item.name}\n   - Size: ${item.size} | Color: ${item.color}\n   - Qty: ${item.qty} x LKR ${item.price.toLocaleString()} = LKR ${(item.qty*item.price).toLocaleString()}\n\n`;
+            });
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const discountAmt = (subtotal * appliedDiscount) / 100;
+            const delivery = subtotal > 6000 ? 0 : 350;
+            const grandTotal = subtotal - discountAmt + delivery;
+
+            msg += `*Subtotal:* LKR ${subtotal.toLocaleString()}\n`;
+            if (appliedDiscount > 0) msg += `*Discount:* -LKR ${discountAmt.toLocaleString()}\n`;
+            msg += `*Delivery Fee:* LKR ${delivery}\n`;
+            msg += `*GRAND TOTAL:* LKR ${grandTotal.toLocaleString()}\n\n`;
+            msg += `Please confirm my order and send dispatch details!`;
+
+            const phone = "94771234567";
+            const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+            window.open(url, '_blank');
+        }
+
+        function openCheckoutModal() {
+            if (cart.length === 0) {
+                showToast("Your cart is empty!");
+                return;
+            }
+            toggleCartDrawer(false);
+            document.getElementById('checkoutModal').classList.remove('hidden');
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkoutModal').classList.add('hidden');
+        }
+
+        function handleCheckoutSubmit(e) {
+            e.preventDefault();
+
+            // Fire Celebration Confetti
+            confetti({
+                particleCount: 150,
+                spread: 80,
+                origin: { y: 0.6 }
+            });
+
+            const orderRef = "VID-" + Math.floor(1000 + Math.random() * 9000);
+            const name = document.getElementById('custName').value;
+
+            closeCheckoutModal();
+            cart = [];
+            updateCartUI();
+
+            showToast(`🎉 Thank you ${name}! Order ${orderRef} placed successfully!`);
+        }
+
+        function toggleOrderTrackerModal(show) {
+            document.getElementById('trackerModal').classList.toggle('hidden', !show);
+        }
+
+        function simulateOrderTrack() {
+            const input = document.getElementById('trackInput').value.trim();
+            const res = document.getElementById('trackResult');
+            if (!input) {
+                showToast("Please enter an order ID!");
+                return;
+            }
+
+            res.classList.remove('hidden');
+            res.innerHTML = `
+                <div class="space-y-2">
+                    <p class="font-bold text-white flex items-center justify-between">
+                        <span>Ref: ${input.toUpperCase()}</span>
+                        <span class="text-emerald-400 font-black">DISPATCHED</span>
+                    </p>
+                    <p class="text-slate-300">Status: Parcel handed over to Courier Service (Colombo Hub).</p>
+                    <p class="text-slate-400">Estimated Delivery: Within 24-48 Hours</p>
+                </div>
+            `;
+        }
+
+        function toggleCartDrawer(show) {
+            document.getElementById('cartDrawer').classList.toggle('hidden', !show);
+        }
+
+        function toggleWishlistDrawer(show) {
+            document.getElementById('wishlistDrawer').classList.toggle('hidden', !show);
+        }
+
+        function toggleMobileMenu(show) {
+            document.getElementById('mobileMenu').classList.toggle('hidden', !show);
+        }
+
+        function startOfferTimer() {
+            let totalSecs = 12 * 3600 + 45 * 60 + 30;
+            const timerEl = document.getElementById('offerTimer');
+            
+            setInterval(() => {
+                if (!timerEl) return;
+                totalSecs--;
+                if (totalSecs <= 0) totalSecs = 86400;
+                const h = String(Math.floor(totalSecs / 3600)).padStart(2, '0');
+                const m = String(Math.floor((totalSecs % 3600) / 60)).padStart(2, '0');
+                const s = String(totalSecs % 60).padStart(2, '0');
+                timerEl.innerText = `${h}:${m}:${s}`;
+            }, 1000);
+        }
+
+        function showToast(message) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'glass-panel bg-slate-900/95 border border-indigo-500/50 text-white text-xs font-extrabold px-4 py-3 rounded-2xl shadow-2xl flex items-center space-x-2 transition-all transform translate-y-2 opacity-0 pointer-events-auto';
+            toast.innerHTML = `<i class="fa-solid fa-circle-check text-indigo-400 text-sm"></i> <span>${message}</span>`;
+            
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 50);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
